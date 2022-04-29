@@ -1,0 +1,114 @@
+---
+# Container descriptor
+- descriptor: "pip-services:context-info:default:default:1.0"
+  name: "service-emailsettings"
+  description: "Email settings microservice for pip-services"
+
+# Console logger
+- descriptor: "pip-services:logger:console:default:1.0"
+  level: "trace"
+
+# Performance counters that posts values to log
+- descriptor: "pip-services:counters:log:default:1.0"
+  level: "trace"
+
+{{#if MEMORY_ENABLED}}
+# In-memory persistence. Use only for testing!
+- descriptor: "service-emailsettings:persistence:memory:default:1.0"
+{{/if}}
+
+{{#if FILE_ENABLED}}
+# File persistence. Use it for testing of for simple standalone deployments
+- descriptor: "service-emailsettings:persistence:file:default:1.0"
+  path: {{FILE_PATH}}{{#unless FILE_PATH}}"../data/email_settings.json"{{/unless}}
+{{/if}}
+
+{{#if MONGO_ENABLED}}
+# MongoDB Persistence
+- descriptor: "service-emailsettings:persistence:mongodb:default:1.0"
+  collection: {{MONGO_COLLECTION}}{{#unless MONGO_COLLECTION}}emailsettings{{/unless}}
+  connection:
+    uri: {{{MONGO_SERVICE_URI}}}
+    host: {{{MONGO_SERVICE_HOST}}}{{#unless MONGO_SERVICE_HOST}}localhost{{/unless}}
+    port: {{MONGO_SERVICE_PORT}}{{#unless MONGO_SERVICE_PORT}}27017{{/unless}}
+    database: {{MONGO_DB}}{{#unless MONGO_DB}}app{{/unless}}
+  credential:
+    username: {{MONGO_USER}}
+    password: {{MONGO_PASS}}
+{{/if}}
+
+{{#unless MEMORY_ENABLED}}{{#unless FILE_ENABLED}}{{#unless MONGO_ENABLED}}
+# Default in-memory persistence
+- descriptor: "service-emailsettings:persistence:memory:default:1.0"
+{{/unless}}{{/unless}}{{/unless}}
+
+# Email client
+- descriptor: "service-email:client:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: {{EMAIL_SERVICE_HOST}}
+    port: {{EMAIL_SERVICE_PORT}}
+
+{{#if ACTIVITIES_ENABLED}}
+# Activities client
+- descriptor: "service-activities:client:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: {{ACTIVITIES_SERVICE_HOST}}
+    port: {{ACTIVITIES_SERVICE_PORT}}
+{{/if}}
+
+{{#if MESSAGE_TEMPLATES_ENABLED}}
+# Message templates client
+- descriptor: "service-msgtemplates:client:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: {{MESSAGE_TEMPLATES_SERVICE_HOST}}
+    port: {{MESSAGE_TEMPLATES_SERVICE_PORT}}
+{{/if}}
+
+# Default controller
+- descriptor: "service-emailsettings:controller:default:default:1.0"
+  options:
+    magic_code: {{MAGIC_CODE}}{{#unless MAGIC_CODE}}'123'{{/unless}}
+    verify_on_create: {{VERIFY_ON_CREATE}}{{#unless VERIFY_ON_CREATE}}true{{/unless}}
+    verify_on_update: {{VERIFY_ON_UPDATE}}{{#unless VERIFY_ON_UPDATE}}true{{/unless}}
+
+{{#if HTTP_ENABLED}}
+# Common HTTP endpoint
+- descriptor: "pip-services:endpoint:http:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8080
+
+# HTTP endpoint version 1.0
+- descriptor: "service-emailsettings:service:http:default:1.0"
+  swagger:
+    enable: true
+    auto: true
+
+# Heartbeat service
+- descriptor: "pip-services:heartbeat-service:http:default:1.0"
+
+# Status service
+- descriptor: "pip-services:status-service:http:default:1.0"
+
+# Swagger service
+- descriptor: "pip-services:swagger-service:http:default:1.0"
+{{/if}}
+
+{{#if GRPC_ENABLED}}
+# Common GRPC endpoint
+- descriptor: "pip-services:endpoint:grpc:default:1.0"
+  connection:
+    protocol: "http"
+    host: "0.0.0.0"
+    port: 8090
+
+# GRPC endpoint version 1.0
+- descriptor: "service-emailsettings:service:grpc:default:1.0"
+
+# Commandable GRPC endpoint version 1.0
+- descriptor: "service-emailsettings:service:commandable-grpc:default:1.0"
+{{/if}}
