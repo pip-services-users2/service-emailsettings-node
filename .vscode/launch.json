@@ -11,13 +11,13 @@
 			"program": "${workspaceRoot}/bin/main.js",
 			"sourceMaps": true,
 			"env": {
-				"MONGO_SERVICE_HOST": "mongo",
-				"MONGO_SERVICE_PORT": "27017",
-				"MONGO_DB": "app",
+				// "MONGO_SERVICE_HOST": "mongo",
+				// "MONGO_SERVICE_PORT": "27017",
+				// "MONGO_DB": "app",
 				"HTTP_ENABLED": "true",
 				"GRPC_ENABLED": "true",
-				"EMAIL_SERVICE_HOST": "email",
-				"EMAIL_SERVICE_PORT": "8080"
+				// "EMAIL_SERVICE_HOST": "email",
+				// "EMAIL_SERVICE_PORT": "8080"
 			}
 		},
 		{

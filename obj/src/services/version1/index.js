@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailSettingsGrpcServiceV1 = exports.EmailSettingsCommandableGrpcServiceV1 = exports.EmailSettingsHttpServiceV1 = void 0;
-var EmailSettingsHttpServiceV1_1 = require("./EmailSettingsHttpServiceV1");
-Object.defineProperty(exports, "EmailSettingsHttpServiceV1", { enumerable: true, get: function () { return EmailSettingsHttpServiceV1_1.EmailSettingsHttpServiceV1; } });
+exports.EmailSettingsGrpcServiceV1 = exports.EmailSettingsCommandableGrpcServiceV1 = exports.EmailSettingsCommandableHttpServiceV1 = void 0;
+var EmailSettingsCommandableHttpServiceV1_1 = require("./EmailSettingsCommandableHttpServiceV1");
+Object.defineProperty(exports, "EmailSettingsCommandableHttpServiceV1", { enumerable: true, get: function () { return EmailSettingsCommandableHttpServiceV1_1.EmailSettingsCommandableHttpServiceV1; } });
 var EmailSettingsCommandableGrpcServiceV1_1 = require("./EmailSettingsCommandableGrpcServiceV1");
 Object.defineProperty(exports, "EmailSettingsCommandableGrpcServiceV1", { enumerable: true, get: function () { return EmailSettingsCommandableGrpcServiceV1_1.EmailSettingsCommandableGrpcServiceV1; } });
 var EmailSettingsGrpcServiceV1_1 = require("./EmailSettingsGrpcServiceV1");

@@ -86,7 +86,7 @@ Example of microservice configuration
 
 - descriptor: "service-emailsettings:controller:default:default:1.0"
   
-- descriptor: "service-emailsettings:service:http:default:1.0"
+- descriptor: "service-emailsettings:service:commandable-http:default:1.0"
   connection:
     protocol: "http"
     host: "0.0.0.0"

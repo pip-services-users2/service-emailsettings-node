@@ -10,7 +10,7 @@ import { EmailNullClientV1 } from 'client-email-node';
 import { EmailSettingsV1 } from '../../../src/data/version1/EmailSettingsV1';
 import { EmailSettingsMemoryPersistence } from '../../../src/persistence/EmailSettingsMemoryPersistence';
 import { EmailSettingsController } from '../../../src/logic/EmailSettingsController';
-import { EmailSettingsHttpServiceV1 } from '../../../src/services/version1/EmailSettingsHttpServiceV1';
+import { EmailSettingsCommandableHttpServiceV1 } from '../../../src/services/version1/EmailSettingsCommandableHttpServiceV1';
 
 let httpConfig = ConfigParams.fromTuples(
     "connection.protocol", "http",
@@ -26,8 +26,8 @@ let SETTINGS = <EmailSettingsV1> {
     verified: false
 };
 
-suite('EmailSettingsHttpServiceV1', ()=> {
-    let service: EmailSettingsHttpServiceV1;
+suite('EmailSettingsCommandableHttpServiceV1', ()=> {
+    let service: EmailSettingsCommandableHttpServiceV1;
 
     let rest: any;
 
@@ -37,7 +37,7 @@ suite('EmailSettingsHttpServiceV1', ()=> {
         let controller = new EmailSettingsController();
         controller.configure(new ConfigParams());
 
-        service = new EmailSettingsHttpServiceV1();
+        service = new EmailSettingsCommandableHttpServiceV1();
         service.configure(httpConfig);
 
         let references: References = References.fromTuples(

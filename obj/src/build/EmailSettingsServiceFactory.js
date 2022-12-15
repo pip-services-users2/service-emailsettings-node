@@ -7,7 +7,7 @@ const EmailSettingsMongoDbPersistence_1 = require("../persistence/EmailSettingsM
 const EmailSettingsFilePersistence_1 = require("../persistence/EmailSettingsFilePersistence");
 const EmailSettingsMemoryPersistence_1 = require("../persistence/EmailSettingsMemoryPersistence");
 const EmailSettingsController_1 = require("../logic/EmailSettingsController");
-const EmailSettingsHttpServiceV1_1 = require("../services/version1/EmailSettingsHttpServiceV1");
+const EmailSettingsCommandableHttpServiceV1_1 = require("../services/version1/EmailSettingsCommandableHttpServiceV1");
 const EmailSettingsCommandableGrpcServiceV1_1 = require("../services/version1/EmailSettingsCommandableGrpcServiceV1");
 const EmailSettingsGrpcServiceV1_1 = require("../services/version1/EmailSettingsGrpcServiceV1");
 class EmailSettingsServiceFactory extends pip_services3_components_nodex_1.Factory {
@@ -17,7 +17,7 @@ class EmailSettingsServiceFactory extends pip_services3_components_nodex_1.Facto
         this.registerAsType(EmailSettingsServiceFactory.FilePersistenceDescriptor, EmailSettingsFilePersistence_1.EmailSettingsFilePersistence);
         this.registerAsType(EmailSettingsServiceFactory.MongoDbPersistenceDescriptor, EmailSettingsMongoDbPersistence_1.EmailSettingsMongoDbPersistence);
         this.registerAsType(EmailSettingsServiceFactory.ControllerDescriptor, EmailSettingsController_1.EmailSettingsController);
-        this.registerAsType(EmailSettingsServiceFactory.HttpServiceDescriptor, EmailSettingsHttpServiceV1_1.EmailSettingsHttpServiceV1);
+        this.registerAsType(EmailSettingsServiceFactory.CmdHttpServiceDescriptor, EmailSettingsCommandableHttpServiceV1_1.EmailSettingsCommandableHttpServiceV1);
         this.registerAsType(EmailSettingsServiceFactory.CommandableGrpcServiceDescriptor, EmailSettingsCommandableGrpcServiceV1_1.EmailSettingsCommandableGrpcServiceV1);
         this.registerAsType(EmailSettingsServiceFactory.GrpcServiceDescriptor, EmailSettingsGrpcServiceV1_1.EmailSettingsGrpcServiceV1);
     }
@@ -28,7 +28,7 @@ EmailSettingsServiceFactory.MemoryPersistenceDescriptor = new pip_services3_comm
 EmailSettingsServiceFactory.FilePersistenceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "persistence", "file", "*", "1.0");
 EmailSettingsServiceFactory.MongoDbPersistenceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "persistence", "mongodb", "*", "1.0");
 EmailSettingsServiceFactory.ControllerDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "controller", "default", "*", "1.0");
-EmailSettingsServiceFactory.HttpServiceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "service", "http", "*", "1.0");
+EmailSettingsServiceFactory.CmdHttpServiceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "service", "commandable-http", "*", "1.0");
 EmailSettingsServiceFactory.CommandableGrpcServiceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "service", "commandable-grpc", "*", "1.0");
 EmailSettingsServiceFactory.GrpcServiceDescriptor = new pip_services3_commons_nodex_1.Descriptor("service-emailsettings", "service", "grpc", "*", "1.0");
 //# sourceMappingURL=EmailSettingsServiceFactory.js.map
