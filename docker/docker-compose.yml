@@ -10,7 +10,7 @@ services:
     links:
       - mongo
     environment:
-      - MONGO_ENABLED=true
+      - MONGO_SERVICE_URI=
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
       - MONGO_DB=app
