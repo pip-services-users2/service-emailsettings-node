@@ -2,17 +2,14 @@ version: '3.3'
 
 services:
 
-  app:
+  test:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: ${IMAGE:-pipdevs/app}
+    image: ${IMAGE:-pipservices/app}
     links:
-      - email
       - mongo
     environment:
-      - EMAIL_SERVICE_HOST=email
-      - EMAIL_SERVICE_PORT=8080
       - MONGO_SERVICE_URI=
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
@@ -22,19 +19,6 @@ services:
     ports:
       - "8080:8080"
       - "8090:8090"
-
-  email:
-    image: pipdevs/pip-services-email-node:1.0.1-24-rc
-    # image: pipdevs/service-email-node:latest
-    links:
-      - mongo
-    environment:
-      - MONGO_SERVICE_URI=
-      - MONGO_SERVICE_HOST=mongo
-      - MONGO_SERVICE_PORT=27017
-      - MONGO_DB=app
-      - HTTP_ENABLED=true
-      - GRPC_ENABLED=true
 
   mongo:
     image: mongo:latest
