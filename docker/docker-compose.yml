@@ -9,6 +9,7 @@ services:
     image: ${IMAGE:-pipservices/app}
     links:
       - mongo
+      - email
     environment:
       - MONGO_SERVICE_URI=
       - MONGO_SERVICE_HOST=mongo
@@ -16,6 +17,8 @@ services:
       - MONGO_DB=app
       - HTTP_ENABLED=true
       - GRPC_ENABLED=true
+      - EMAIL_SERVICE_HOST=email
+      - EMAIL_SERVICE_PORT=8080
     ports:
       - "8080:8080"
       - "8090:8090"
