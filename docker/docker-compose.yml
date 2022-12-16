@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
 
-  test:
+  app:
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -10,7 +10,7 @@ services:
     links:
       - mongo
     environment:
-      - MONGO_SERVICE_URI=
+      - MONGO_ENABLED=true
       - MONGO_SERVICE_HOST=mongo
       - MONGO_SERVICE_PORT=27017
       - MONGO_DB=app
@@ -19,6 +19,12 @@ services:
     ports:
       - "8080:8080"
       - "8090:8090"
+
+  email:
+    image: pipservices/service-email-node:1.1.0-17
+    environment:
+      - HTTP_ENABLED=true
+      - GRPC_ENABLED=true
 
   mongo:
     image: mongo:latest
