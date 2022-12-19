@@ -12,7 +12,7 @@ on:
 jobs:
   # Setup job
   setup:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
 
     steps:
@@ -44,7 +44,7 @@ jobs:
   # Authoring job
   authoring:
     needs: setup
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout source code
@@ -92,11 +92,11 @@ jobs:
       shell: bash
       run: ./script-delivery-ps/authoring/clean/clean.ps1
 
- # Measure job
+  # Measure job
   measure:
     needs: authoring
     if: always()
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps: 
     - name: Get cached delivery artifact
