@@ -43,7 +43,7 @@
 {{/unless}}{{/unless}}{{/unless}}
 
 # Email client
-- descriptor: "service-email:client:http:default:1.0"
+- descriptor: "service-email::default:1.0"
   connection:
     protocol: "http"
     host: {{EMAIL_SERVICE_HOST}}
@@ -51,7 +51,7 @@
 
 {{#if ACTIVITIES_ENABLED}}
 # Activities client
-- descriptor: "service-activities:client:http:default:1.0"
+- descriptor: "service-activities::default:1.0"
   connection:
     protocol: "http"
     host: {{ACTIVITIES_SERVICE_HOST}}
@@ -60,7 +60,7 @@
 
 {{#if MESSAGE_TEMPLATES_ENABLED}}
 # Message templates client
-- descriptor: "service-msgtemplates:client:http:default:1.0"
+- descriptor: "service-msgtemplates::default:1.0"
   connection:
     protocol: "http"
     host: {{MESSAGE_TEMPLATES_SERVICE_HOST}}
