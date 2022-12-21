@@ -43,7 +43,7 @@
 {{/unless}}{{/unless}}{{/unless}}
 
 # Email client
-- descriptor: "service-email::default:1.0"
+- descriptor: "service-email:client:commandable-http:default:1.0"
   connection:
     protocol: "http"
     host: {{EMAIL_SERVICE_HOST}}
@@ -51,7 +51,7 @@
 
 {{#if ACTIVITIES_ENABLED}}
 # Activities client
-- descriptor: "service-activities::default:1.0"
+- descriptor: "service-activities:client:commandable-http:default:1.0"
   connection:
     protocol: "http"
     host: {{ACTIVITIES_SERVICE_HOST}}
